@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2019-12-02T14:36:33Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Hyper-V VM perfomance counters discovery</template>
+            <name>Hyper-V VM perfomance counters discovery</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>VMCPU</name>
+                </application>
+                <application>
+                    <name>VMDisk</name>
+                </application>
+                <application>
+                    <name>VMNIC</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Hyper-V VM CPU Discovery</name>
+                    <key>ps_script_param[zabbix-discovery-vm-counters.ps1,GetVMCPUs,{HOST.NAME}]</key>
+                    <delay>30m</delay>
+                    <description>Hyper-V VM Virtual CPU Discovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual CPU {#VMCPU} Total</name>
+                            <key>perf_counter[\\{#VMHOST}\hyper-v hypervisor virtual processor({#VMCPU})\% total run time,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>VMCPU</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Hyper-V VM Virtual Disk Discovery</name>
+                    <key>ps_script_param[zabbix-discovery-vm-counters.ps1,GetVMDisks,{HOST.NAME}]</key>
+                    <delay>30m</delay>
+                    <description>Hyper-V VM Virtual Disk Discovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} Bytes Read/Sec</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Storage Device({#VMDISK})\Read Bytes/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>VMDisk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} IOPS Read</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Storage Device({#VMDISK})\Read Operations/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>IOPS</units>
+                            <applications>
+                                <application>
+                                    <name>VMDisk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} Bytes Write/Sec</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Storage Device({#VMDISK})\Write Bytes/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>VMDisk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} IOPS Write</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Storage Device({#VMDISK})\Write Operations/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>IOPS</units>
+                            <applications>
+                                <application>
+                                    <name>VMDisk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Hyper-V VM Virtual NIC Discovery</name>
+                    <key>ps_script_param[zabbix-discovery-vm-counters.ps1,GetVMNICs,{HOST.NAME}]</key>
+                    <delay>30m</delay>
+                    <description>Hyper-V VM Virtual Net Adapter Diskcovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM VNIC {#VMNIC} Bytes Received/Sec</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Network Adapter({#VMNIC})\Bytes Received/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>VMNIC</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM VNIC {#VMNIC} Bytes Sent/Sec</name>
+                            <key>perf_counter[\\{#VMHOST}\Hyper-V Virtual Network Adapter({#VMNIC})\Bytes Sent/sec,]</key>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>Bps</units>
+                            <applications>
+                                <application>
+                                    <name>VMNIC</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
