@@ -1,5 +1,9 @@
 # Zabbix Hyper-V VM basic performance counters monitoring
 
+## Preface
+
+The main idea of this template is based on https://github.com/ameiji/Zabbix-HyperV-Templates but change the logic of collecting perfomance counters samples, dramatically increase perfomance on hosts with virtual machines quantity more then 50 per host. Also, host monitoring is been removed.
+
 ## Description
 
 This Zabbix template pack automatically discovers Hyper-V virtual machines, creates for each VM synthetic host with name like "VM-Name_HOST-Name". For each synthetic VM host created autolinked template discovers performance counters:
