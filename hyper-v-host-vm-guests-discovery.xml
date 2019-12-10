@@ -4,7 +4,7 @@
     <date>2019-12-02T14:35:56Z</date>
     <groups>
         <group>
-            <name>sc.group.hyper-v.vm</name>
+            <name>Hyper-V VMs</name>
         </group>
         <group>
             <name>Templates</name>
